@@ -1,0 +1,19 @@
+{
+  "name": "radar-vis-plugin",
+  "version": "0.14.0",
+  "description": "Radar plugin for visualizing spyder nets",
+  "authors": [
+    "David Moreno Lumbreras <dmorenolumb@gmail.com>",
+    "Eva Millán <evamillan@bitergia.com>"
+  ],
+  "license": "Apache-2.0",
+  "dependencies": {
+    "chart.js": "^2.9.4",
+    "react-chartjs-2": "^2.11.2"
+  },
+  "scripts": {
+    "build": "yarn plugin-helpers build",
+    "plugin-helpers": "node ../../scripts/plugin_helpers",
+    "osd": "node ../../scripts/osd"
+  }
+}
