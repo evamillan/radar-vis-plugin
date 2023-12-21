@@ -14,7 +14,7 @@ jobs:
       filename: ${{ steps.build_zip.outputs.filename }}
     steps:
       - name: Checkout plugin source code
-        uses: actions/checkout@v2
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # 3.1.0
         with:
           path: plugin
       - name: Get plugin metadata
@@ -27,7 +27,7 @@ jobs:
         run: |
           echo "::set-output name=version::$(node -p "(require('./plugin/opensearch_dashboards.json').opensearchDashboardsVersion).match(/[.0-9]+/)[0]")"
       - name: Checkout OpenSearch Dashboards
-        uses: actions/checkout@v2
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # 3.1.0
         with:
           repository: opensearch-project/OpenSearch-Dashboards
           ref: ${{ steps.osd_version.outputs.version }}
@@ -38,7 +38,7 @@ jobs:
           echo "::set-output name=node_version::$(node -p "(require('./osd/package.json').engines.node).match(/[.0-9]+/)[0]")"
           echo "::set-output name=yarn_version::$(node -p "require('./osd/package.json').engines.yarn")"
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@64ed1c7eab4cce3362f8c340dee64e5eaeef8f7c # 3.6.0
         with:
           node-version: ${{ steps.versions.outputs.node_version }}
       - name: Setup yarn
@@ -66,7 +66,7 @@ jobs:
           echo "::set-output name=zip_path::$zip_path"
           echo "::set-output name=filename::$filename"
       - name: Upload plugin artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@0b7f8abb1508181956e8e162db84b466c27e18ce # 3.1.2
         with:
           name: plugin_artifact
           path: ${{ steps.build_zip.outputs.zip_path }}
@@ -75,6 +75,8 @@ jobs:
     name: Release plugin
     needs: [build]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Get release tag
         id: tag
@@ -82,11 +84,11 @@ jobs:
           echo ::set-output name=tag::${GITHUB_REF#refs/tags/}
         shell: bash
       - name: Checkout plugin source code
-        uses: actions/checkout@v2
+        uses: actions/checkout@93ea575cb5d8a053eaa0ac8fa3b40d7e05a33cc8 # 3.1.0
         with:
           path: plugin
       - name: Download plugin artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@9bc31d5ccc31df68ecc42ccf4149144866c47d8a # 3.0.2
         with:
           name: plugin_artifact
           path: plugin/build
