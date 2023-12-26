@@ -1,6 +1,6 @@
 {
   "id": "radarVisPlugin",
-  "version": "0.14.1-rc.2",
+  "version": "0.14.1",
   "opensearchDashboardsVersion": "2.10.0",
   "server": false,
   "ui": true,
