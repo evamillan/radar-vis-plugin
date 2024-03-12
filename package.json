@@ -1,6 +1,6 @@
 {
   "name": "radar-vis-plugin",
-  "version": "0.19.1-rc.1",
+  "version": "0.19.1",
   "description": "Radar plugin for visualizing spyder nets",
   "authors": [
     "David Moreno Lumbreras <dmorenolumb@gmail.com>",
