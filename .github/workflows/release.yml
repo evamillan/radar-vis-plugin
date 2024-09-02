@@ -35,12 +35,12 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # 4.0.1
         with:
-          node-version-file: './OpenSearch-Dashboards/.nvmrc'
+          node-version-file: './osd/.nvmrc'
           registry-url: 'https://registry.npmjs.org'
       - name: Setup yarn
         run: |
           npm uninstall -g yarn
-          YARN_VERSION=$(node -p "require('./OpenSearch-Dashboards/package.json').engines.yarn")
+          YARN_VERSION=$(node -p "require('./osd/package.json').engines.yarn")
           echo "Installing yarn @$YARN_VERSION"
           npm i -g yarn@$YARN_VERSION
       - name: Move plugin to OpenSearch Dashboards folder
